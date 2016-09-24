@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
 const Repo = ({ repo, owner }) => {
-  const { login } = owner
-  const { name, description } = repo
+  const { login } = owner  //login=owner.login
+  const { name, description } = repo //name=description=repo.repo.description
 
   return (
     <div className="Repo">
@@ -22,7 +22,7 @@ const Repo = ({ repo, owner }) => {
     </div>
   )
 }
-
+//link to 是路由。
 Repo.propTypes = {
   repo: PropTypes.shape({
     name: PropTypes.string.isRequired,

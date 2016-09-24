@@ -1,18 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 
-const GITHUB_REPO = 'https://github.com/reactjs/redux'
+
 
 export default class Explore extends Component {
   static propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired
   }
-
+//onChange 必须是一个函数，value必须是一个字符串。
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setInputValue(nextProps.value)
     }
   }
+
+  //对组件进行回收
 
   getInputValue = () => {
     return this.refs.input.value
@@ -25,11 +27,13 @@ export default class Explore extends Component {
     this.refs.input.value = val
   }
 
-  handleKeyUp = (e) => {
+  handleKeyUp(e) {
     if (e.keyCode === 13) {
       this.handleGoClick()
     }
   }
+  //如果keycode=13的按键也就是enter键被按下了，则采取相应的措施。
+  //再次进行了一次转化。
 
   handleGoClick = () => {
     this.props.onChange(this.getInputValue())
@@ -40,19 +44,22 @@ export default class Explore extends Component {
       <div>
         <p>Type a username or repo full name and hit 'Go':</p>
         <input size="45"
-               ref="input"
-               defaultValue={this.props.value}
-               onKeyUp={this.handleKeyUp} />
+          ref="input"
+          defaultValue={this.props.value}
+          onKeyUp={this.handleKeyUp} 
+          placeholder="please input your words"    
+               />
         <button onClick={this.handleGoClick}>
           Go!
         </button>
+        <hr/>
         <p>
-          Code on <a href={GITHUB_REPO} target="_blank">Github</a>.
-        </p>
-        <p>
-          Move the DevTools with Ctrl+W or hide them with Ctrl+H.
+          Move hide the DevTools   with Ctrl+H.
         </p>
       </div>
     )
   }
 }
+
+//在这里就是用的原生的html UI，并没有使用类似bootstrap这样的包。
+//我们也可以试着来使用一下。

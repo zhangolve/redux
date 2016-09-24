@@ -126,3 +126,9 @@ export default store => next => action => {
     }))
   )
 }
+
+//本教程不涉及如何编写中间件，因为常用的中间件都有现成的，只要引用别人写好的模块即可。比如，上一节的日志中间件，
+//就有现成的redux-logger模块。这里只介绍怎么使用中间件。
+//http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_two_async_operations.html
+//这个api也是起到了一个中间件的作用，而中间件就是为了异步操作而产生的。
+//上面代码中，redux-logger提供一个生成器createLogger，可以生成日志中间件logger。然后，将它放在applyMiddleware方法之中，传入createStore方法，就完成了store.dispatch()的功能增强。

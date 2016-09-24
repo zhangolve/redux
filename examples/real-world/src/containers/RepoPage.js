@@ -32,11 +32,17 @@ class RepoPage extends Component {
       loadData(nextProps)
     }
   }
-
-  handleLoadMoreClick = () => {
+  handleLoadMoreClick=()=>  {
+  
+    this.props.loadStargazers(this.props.fullName, true)}
+/*
+改写成带有return形式的。
+  handleLoadMoreClick()  {
+    return 
     this.props.loadStargazers(this.props.fullName, true)
+  
   }
-
+*/
   renderUser(user) {
     return <User user={user} key={user.login} />
   }

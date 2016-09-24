@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-
+import { Button,Form,FormGroup,FormControl,ControlLabel } from 'react-bootstrap';
 
 
 export default class Explore extends Component {
@@ -30,18 +30,39 @@ export default class Explore extends Component {
   handleKeyUp(e) {
     if (e.keyCode === 13) {
       this.handleGoClick()
+      //alert('success')
     }
   }
   //如果keycode=13的按键也就是enter键被按下了，则采取相应的措施。
   //再次进行了一次转化。
 
   handleGoClick = () => {
+    //alert("success");
     this.props.onChange(this.getInputValue())
   }
 
   render() {
     return (
       <div>
+        <Button bsStyle="success">Success</Button>
+        <button bsStyle="success">Success</button>
+        <Form inline>
+        <FormGroup >
+        <ControlLabel>Name</ControlLabel>
+        {' '}
+        <FormControl />
+        </FormGroup>
+        {' '}
+        <FormGroup >
+        <ControlLabel>Email</ControlLabel>
+        {' '}
+        <FormControl type="email" placeholder="jane.doe@example.com" />
+        </FormGroup>
+        {' '}
+        <Button type="submit">
+        Send invitation
+        </Button>
+        </Form>
         <p>Type a username or repo full name and hit 'Go':</p>
         <input size="45"
           ref="input"

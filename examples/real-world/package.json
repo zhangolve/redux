@@ -10,15 +10,17 @@
     "redux-logger": "^2.6.1"
   },
   "dependencies": {
-    "humps": "^1.1.0",  
-    "normalizr": "^2.2.1",  
+    "humps": "^1.1.0",
+    "normalizr": "^2.2.1",
     "react": "^15.3.0",
+    "react-bootstrap": "^0.30.3",
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "react-bootstrap":"^0.30.x"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import {Button} from 'antd'
 
 class Counter extends Component {
   static propTypes = {
@@ -21,6 +22,7 @@ class Counter extends Component {
     const { value, onIncrement, onDecrement } = this.props
     return (
       <p>
+        <Button>test</Button>
         Clicked: {value} times
         {' '}
         <button onClick={onIncrement}>

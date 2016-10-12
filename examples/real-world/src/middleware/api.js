@@ -3,7 +3,7 @@ import { camelizeKeys } from 'humps'
 import 'isomorphic-fetch'
 
 // Extracts the next page URL from Github API response.
-const getNextPageUrl = response => {
+const getNextPageUrl = function(response)  {
   const link = response.headers.get('link')
   if (!link) {
     return null
@@ -18,6 +18,7 @@ const getNextPageUrl = response => {
 }
 
 const API_ROOT = 'https://api.github.com/'
+
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
@@ -36,8 +37,9 @@ const callApi = (endpoint, schema) => {
       const nextPageUrl = getNextPageUrl(response)
 
       return Object.assign({},
-        normalize(camelizedJson, schema),
+        normalize(camelizedJson, schema),//最终的返回结果是把normalize()化的深度复制给这个新的对象。
         { nextPageUrl }
+
       )
     })
 }
@@ -54,15 +56,17 @@ const callApi = (endpoint, schema) => {
 // doesn't contain any. For example, "someuser" could result in "SomeUser"
 // leading to a frozen UI as it wouldn't find "someuser" in the entities.
 // That's why we're forcing lower cases down there.
-
+//schema用于改变原有的json的数据结构，方便jredux的state来索引。
 const userSchema = new Schema('users', {
-  idAttribute: user => user.login.toLowerCase()
+  idAttribute:user =>user.login.toLowerCase()
 })
 
+// 相当于 idAttribute: function(user) {return user.login.toLowerCase()}
+//都化为小写的格式
 const repoSchema = new Schema('repos', {
   idAttribute: repo => repo.fullName.toLowerCase()
 })
-
+//化为小写格式
 repoSchema.define({
   owner: userSchema
 })
@@ -85,8 +89,8 @@ export default store => next => action => {
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
-
-  let { endpoint } = callAPI
+  //上面是调用
+  let { endpoint } = callAPI  // endpoint=callAPI.endpoint 
   const { schema, types } = callAPI
 
   if (typeof endpoint === 'function') {
